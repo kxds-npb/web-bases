@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            color: red;
+            text-decoration: none;
+            position: relative;
+            /* transition-property: color 2s font-size 4s;
+            transition-duration: 2s;
+            transition-delay: 5s; */
+        }
+
+        /* a:hover {
+            color: purple;
+            font-size: 1.2rem;
+        } */
+
+        a::before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 1px;
+            bottom: 0;
+        }
+
+        a:hover::before {
+            background-color: purple;
+            animation-name: move;
+            animation-duration: .5s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes move {
+            40% {
+                width: 100%;
+            }
+
+            70% {
+                width: 40%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#">Bienvenue</a>
+</body>
+</html>
