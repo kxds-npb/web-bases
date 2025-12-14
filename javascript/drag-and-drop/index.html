@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and drop</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1e1d1d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            gap: 0 50px;
+        }
+
+        .drop-zone {
+            border: 2px dashed white;
+            height: 500px;
+            width: 300px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px 0;
+        }
+
+        .drop-zone .draggable {
+            background-color: rgb(230, 37, 37);
+            color: white;
+            font-size: 2rem;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: grabbing;
+        }
+
+        .draggable.dragging {
+            opacity: 0.5;
+        }
+
+        .drop-zone.drag-over {
+            background-color: rgba(0, 120, 255, 0.1);
+            border: 2px dashed #0078ff;
+        }
+
+        .drop-zone {
+            min-height: 100px;
+            transition: background-color 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <section class="drop-zone">
+        <div draggable="true" class="draggable">List Item 1</div>
+        <div draggable="true" class="draggable">List Item 2</div>
+    </section>
+    <section class="drop-zone">
+        <div draggable="true" class="draggable">List Item 3</div>
+        <div draggable="true" class="draggable">List Item 4</div>
+    </section>
+    <script src="index.js"></script>
+</body>
+</html>
