@@ -1,112 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Mary's simple recipe for maple bacon donuts
+           makes a sticky, sweet treat with just a hint
+           of salt that you'll keep coming back for."
+    />
     <title>Document</title>
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
+      * {
+        padding: 0;
+        margin: 0;
+      }
 
-        body, html {
-            height: 100%;
-            overflow-x: hidden;
+      body,
+      html {
+        height: 100%;
+        overflow-x: hidden;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        background: #000;
+        color: white;
+        padding: 10px;
+      }
+
+      nav {
+        position: relative;
+      }
+
+      nav button {
+        height: 35px;
+        width: 48px;
+        background: transparent;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+        transition: 0.5s;
+      }
+
+      nav button span {
+        border-radius: 6px;
+        display: block;
+        width: 100%;
+        height: 5px;
+        background: #fff;
+      }
+
+      nav ul {
+        position: absolute;
+        height: 100dvh;
+        top: -10px;
+        right: -10px;
+        background: #075365;
+        list-style-type: none;
+        width: 80vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px 0;
+        transition: 0.5s;
+        transform: translateX(100%);
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .opened + .menus {
+        transform: translateX(0);
+      }
+
+      .opened span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .opened span:nth-child(1) {
+        transform: translate(0, 12px) rotate(-45deg);
+      }
+
+      .opened span:nth-child(3) {
+        transform: translate(0, -18px) rotate(45deg);
+      }
+
+      .burger.opened {
+        transform: translate(-60vw, 30%) scale(0.8);
+      }
+
+      @media screen and (min-width: 768px) {
+        .burger.opened {
+          transform: translate(-68vw, 2vh) scale(0.8);
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        .burger {
+          display: none;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            background: #000;
-            color: white;
-            padding: 10px;
+          padding: 1vw 5vw;
         }
 
-        nav {
-            position: relative;
-        }
-
-        nav button {
-            height: 35px;
-            width: 48px;
-            background: transparent;
-            border: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-        }
-
-        nav button span {
-            border-radius: 6px;
-            display: block;
-            width: 100%;
-            height: 5px;
-            background: #fff;
+        header nav {
+          width: 40%;
         }
 
         nav ul {
-            position: absolute;
-            height: 100dvh;
-            top: -10px;
-            right: -10px;
-            background: #075365;
-            list-style-type: none;
-            width: 80vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 10px 0;
-            transition: .5s;
-            transform: translateX(100%);
+          position: relative;
+          inset: initial;
+          width: auto;
+          height: auto;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 0 10px;
+          transform: translate(0);
+          background-color: transparent;
         }
 
-        nav ul li a{
-            text-decoration: none;
-            color: white;
-            font-size: 1.5rem;
+        nav ul li a {
+          color: #fff;
+          transition: 0.3s;
         }
 
-        .opened {
-            transform: translateX(0);
+        nav ul li a:hover {
+          color: #0ec4b8;
         }
+      }
     </style>
-</head>
-<body>
-    <header>
-        <h1>LOGO</h1>
-        <nav>
-            <button class="burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  </head>
+  <body>
+    <header role="banner">
+      <h1>LOGO</h1>
+      <nav role="navigation">
+        <button class="burger" aria-label="Open mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-            <ul class="menus">
-                <li>
-                    <a href="">Menu1</a>
-                </li>
-                <li>
-                    <a href="">Menu1</a>
-                </li>
-                <li>
-                    <a href="">Menu1</a>
-                </li>
-                <li>
-                    <a href="">Menu1</a>
-                </li>
-            </ul>
-        </nav>
+        <ul class="menus">
+          <li>
+            <a href="">Menu 1</a>
+          </li>
+          <li>
+            <a href="">Menu 2</a>
+          </li>
+          <li>
+            <a href="">Menu 3</a>
+          </li>
+          <li>
+            <a href="">Menu 4</a>
+          </li>
+        </ul>
+      </nav>
     </header>
+    <main role="main"></main>
     <script>
-        const button = document.querySelector(".burger");
-        const menus = document.querySelector(".menus");
-        button.addEventListener("click", function() {
-            menus.classList.toggle("opened");
-        });
+      const button = document.querySelector(".burger");
+      const menus = document.querySelector(".menus");
+      button.addEventListener("click", function () {
+        button.classList.toggle("opened");
+      });
+      console.log("ksdjfsdhf");
     </script>
-</body>
+  </body>
 </html>

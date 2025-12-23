@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Use Array to manipulate the DOM</title>
+  </head>
+  <body>
+    <section class="doc">
+      <h3>Liste de la salle</h3>
+      <form>
+        <input
+          type="search"
+          placeholder="Entrer le nom d'un etudiant"
+          name="Nom des etudiants"
+          required
+        />
+
+        <button type="button">Ajouter</button>
+      </form>
+      <ul class="list"></ul>
+    </section>
+    <script>
+      const studentList = [];
+      const list = document.querySelector(".list");
+      const studentName = document.querySelector("input");
+      const ajouterBtn = document.querySelector("button");
+
+      document.querySelector("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+
+      function addToDOM(value) {
+        const li = document.createElement("li");
+        li.textContent = value;
+        list.appendChild(li);
+      }
+
+      function addToStudentList(nameToAdd) {
+        const hasThisStudentAlready = studentList.find(
+          (name) => name.toLowerCase() === nameToAdd.toLowerCase()
+        );
+
+        if (
+          nameToAdd == "" ||
+          nameToAdd === undefined ||
+          hasThisStudentAlready !== undefined
+        ) {
+          studentName.value = "";
+          return;
+        }
+        studentList.push(nameToAdd);
+
+        addToDOM(nameToAdd);
+        studentName.value = "";
+      }
+
+      ajouterBtn.addEventListener("click", function () {
+        addToStudentList(studentName.value);
+      });
+
+      studentName.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          addToStudentList(studentName.value);
+        }
+      });
+    </script>
+  </body>
+</html>
