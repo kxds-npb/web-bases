@@ -21,50 +21,6 @@
       </form>
       <ul class="list"></ul>
     </section>
-    <script>
-      const studentList = [];
-      const list = document.querySelector(".list");
-      const studentName = document.querySelector("input");
-      const ajouterBtn = document.querySelector("button");
-
-      document.querySelector("form").addEventListener("submit", (e) => {
-        e.preventDefault();
-      });
-
-      function addToDOM(value) {
-        const li = document.createElement("li");
-        li.textContent = value;
-        list.appendChild(li);
-      }
-
-      function addToStudentList(nameToAdd) {
-        const hasThisStudentAlready = studentList.find(
-          (name) => name.toLowerCase() === nameToAdd.toLowerCase()
-        );
-
-        if (
-          nameToAdd == "" ||
-          nameToAdd === undefined ||
-          hasThisStudentAlready !== undefined
-        ) {
-          studentName.value = "";
-          return;
-        }
-        studentList.push(nameToAdd);
-
-        addToDOM(nameToAdd);
-        studentName.value = "";
-      }
-
-      ajouterBtn.addEventListener("click", function () {
-        addToStudentList(studentName.value);
-      });
-
-      studentName.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-          addToStudentList(studentName.value);
-        }
-      });
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>

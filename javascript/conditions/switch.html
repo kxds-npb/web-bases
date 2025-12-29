@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const command = "Pomme";
+      /*
+       L'instruction switch évalue une expression et, selon le résultat obtenu et le cas associé, exécute les instructions correspondantes.
+       Lorsque l'on veut prendre uen decision sur la base de la valeur d'une variable (Eg. commande, machine de vote, gerer un etat, etc.)
+
+       * break: marque la fin de l'instruction
+       * case: represente un cas de valuer possible
+       * default: represente le cas ou aucune valeur ne correspond
+      */
+      switch (command) {
+        case "Banane":
+          console.log("3 a 100f");
+          break;
+        case "Orange":
+        case "Pomme":
+          console.log("1 a 75f");
+          break;
+        case "Ananas":
+          console.log("1 a 350f");
+          break;
+        default:
+          console.log("Je ne vends pas cela");
+          break;
+      }
+
+      const notes = [10, 9, 16, 12, 4, 6, 11.5, 12, 10];
+      //   Pour  i allant 0 a 10 avec faire {}
+      // i = i+1 ==> i++: incrementation
+      // i = i-1 ==> i-- : decrementation
+      let noteMaximale = notes[0]; // 0
+      let noteMinimale = notes[0]; // 20
+      for (let i = 0; i < notes.length; i++) {
+        // for(initialisation; condition d'arret; deplacement) { ...instruction}
+        if (notes[i] > noteMaximale) {
+          noteMaximale = notes[i];
+          console.log(noteMaximale); // Pour voir les differents changement de valeur
+        }
+
+        if (notes[i] < noteMinimale) {
+          noteMinimale = notes[i];
+          console.log(noteMinimale); // Pour voir les differents changement de valeur
+        }
+      }
+
+      //   console.log("Note maximale: ", noteMaximale);
+      //   console.log("Note minimale: ", noteMinimale);
+      //   Alternative Math.max(notes)
+      console.log("Math.max:", Math.max(...notes)); //Pour recuperer la note maximale
+      console.log("Math.min:", Math.min(...notes)); // Pour recuperer la note minimale
+      // ...note va juste iterer ou parcourir le tableau et passer les element sous forme de liste (10, 9, 16, 12, 4, 6). `...` est appelle operateur de decomposition
+
+      /*
+      const a = [1, 2, 4]
+      ...a: 1,2,3
+      */
+    </script>
+  </body>
+</html>
