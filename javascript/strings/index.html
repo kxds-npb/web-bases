@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String and Manipulation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      /*
+       * On peut declarer un string de plusieur manieres. En utilisant:
+       * - "" double quotes
+       * - '' simple quotes
+       * - new String("") l'object natif string
+       * - `` l'interpolation avec le caractere backtick
+       */
+      const name = new String("Pauline"); //"", '', new String, ``;
+      const prenom = "Perick";
+
+      const fullname = name + " " + prenom; //"Pauline Perick"
+      const fullnameInterpolate = `${name} ${prenom}`; //"Pauline Perick";
+
+      const age = 23;
+      const text = `jsablkdjbalskdbaksldbkasjbdlkasjbd
+      lkajsblkabdjklasdkjas`; // Resout le problem d'aller a ligne avec les chaine de characteres
+      const fullnameAge = `${fullnameInterpolate} et age ${age}`;
+      console.log(fullnameAge);
+
+      //   charAt: Permet de recupere un caractere a un index precis
+      console.log("CharAt: ", prenom[0], prenom.charAt(2));
+      //   length: Permet de recuperer le nombre de charactere
+      console.log(prenom.length, prenom[prenom.length - 1]);
+      //   at: Fait le meme travail que `charAt` mais accepte aussi le parcours dans le sens inverse (eg. -1 pour le premier caractere commencant a la fin)
+      console.log("Method 'at': ", prenom.at(0), prenom.at(-2));
+      // toUpperCase : Permet de rendre la chaine de caractere en majuscule
+      console.log("UpperCase: ", prenom.toUpperCase());
+      // toLowerCase: Permet de rendre le chaine de caractere en minuscule
+      console.log("LowerCase: ", prenom.toLowerCase());
+      // slice: Permet de recupere des caractere a un interval definit `slice(debut, fin)` mais excluant le dernier caractere ([debut, fin[)
+      console.log("slice: ", prenom.slice(0, 3));
+      //split: Permet de coupter un chaine de charactere suivant un separateur en parametre
+      console.log("split: ", "My name is hey".split(" ")); //["My", "name", "is", "hey"]
+      //indexOf: Permet de recupere l'index d'un caractere dans la chaine de caractere
+      console.log("IndexOf: ", prenom.indexOf("i"));
+      //lastIndexOf: Permet de recupere l'index de la derniere aucurrence d'un caractere dans la chaine de caractere
+      console.log("lastIndexOf: ", prenom.lastIndexOf("c"));
+      //includes: Permet de verifier si une chaine de caractere contient un caractere specific ou une autre chaine
+      console.log("includes: ", prenom.includes("i"), prenom.includes("ick"));
+      //startsWith: Permet de verifier si la chaine de charactere debute par un caractere specific ou un chaine de caractere
+      console.log(
+        "startsWith: ",
+        prenom.startsWith("i"),
+        prenom.startsWith("per")
+      );
+      // trim: Permet d'enlever les espaces au debut et a la fin d'une chaine de caractere
+      console.log("Trim: ", "  hey bro how are you   ".trim());
+      /* Exercise (Capitalize word and sentence)
+       Cas 1: ("mon nom est un genre"); // Mon Nom Est Un Genre
+       Cas2: ("alan"); // Alan
+       Cas 3: ("Alan"); // Alan
+      */
+
+      /* TODO:
+        1. Comment recuperer chaque element dans le cas d'une phrase
+        2. Apres, comment parcourir cela pour transformer chaque premiere lettre en majuscule
+        3. Comment transformer rien que la premiere lettre en majuscule
+        4. A la fin renvoyer la phrase ou mot en une seule chaine de charactere
+      */
+
+      //   Case d'un seul mot
+      function capitalize(word) {
+        const tableauDeMots = word.split(" ");
+        const tableauDeMotAvecPremiereLettreMajuscule = tableauDeMots.map(
+          (w) => w.charAt(0).toUpperCase() + w.slice(1)
+        );
+
+        return tableauDeMotAvecPremiereLettreMajuscule.join(" ");
+      }
+
+      console.log("Capitalize: (Mot)", capitalize("alan"));
+      console.log(
+        "Capitalize: (Phrase)",
+        capitalize("mon nom est un genre et j'apprecit")
+      );
+    </script>
+  </body>
+</html>

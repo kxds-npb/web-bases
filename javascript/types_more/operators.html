@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operateurs (Suite)</title>
+  </head>
+  <body>
+    <script>
+      /*
+       * + : addition
+       * - : soustractions
+       * * : multiplication
+       * / : division
+       * % : modulo
+       * += : affectation apres addition
+       * -= : affectation apres soustraction
+       * *= : affectation apres multiplication
+       * / = : affectation apres division
+       * %=: affectation apres modulo
+       *
+       * Falsy values (false, 0, "", undefined, null, NaN)
+       *
+       * Operateurs de comparaison
+       * ?? : operateur de coalescence null
+       * || : OU logique
+       * ||= : affectation OU logique
+       */
+      const nombre1 = 10;
+      const nombre2 = 15;
+
+      const somme = nombre1 + nombre2;
+
+      let somme1 = 10;
+      somme1 += nombre2; // somme1 = somme1 + nombre2;
+      console.log("Resultat: ", somme1);
+
+      const score = ""; // ??
+      // Liste des valeurs consideree comme fausse par les condition en js: false, 0, "", undefined, null, NaN
+      if (score) {
+        console.log("Score:", score);
+      } else {
+        console.log("Erreur au niveau de la valeur");
+      }
+
+      //   Autres operateurs de comparaisons
+      const note = null ?? "RAS";
+      console.log(null ?? "Hey"); // Verifie si la valeur est null ou undefined
+      console.log(undefined || "Hey"); // Verifie si la valeur est null ou undefined
+
+      let price = 0;
+      price ||= 5;
+      console.log(price);
+    </script>
+  </body>
+</html>

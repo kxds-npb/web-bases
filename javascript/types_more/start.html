@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barre de navigation responsive model 1</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+
+      html,
+      body {
+        overflow: hidden;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        background: #000;
+        color: white;
+        position: relative;
+        z-index: 0;
+      }
+
+      .burger {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: transparent;
+        border: none;
+        justify-content: space-between;
+        height: 28px;
+        width: 40px;
+        z-index: 2;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+
+      .burger.open {
+        transform: translate(-240px, 20%) scale(0.7);
+      }
+
+      .burger.open:hover > span {
+        background-color: rgb(228, 54, 54);
+      }
+
+      .burger span {
+        display: block;
+        width: 40px;
+        height: 15%;
+        background-color: #fff;
+        transition: 0.5s;
+        border-radius: 6px;
+      }
+
+      .burger + .menus {
+        transform: translateX(100%);
+        transition: 0.5s;
+      }
+
+      .burger.open + .menus {
+        transform: translateX(0);
+      }
+
+      .open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .open span:nth-child(1) {
+        transform: translate(0, 12px) rotate(-45deg);
+      }
+
+      .open span:nth-child(3) {
+        transform: translate(0, -12px) rotate(45deg);
+      }
+
+      .navigation {
+        position: relative;
+      }
+
+      .menus {
+        position: absolute;
+        background: #082c45;
+        list-style-type: none;
+        padding: 5px;
+        width: 300px;
+        height: 100dvh;
+        right: -15px;
+        top: -15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem 0;
+        z-index: 1;
+      }
+
+      .menus li a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2 class="logo a b c d">Logo</h2>
+      <nav class="navigation">
+        <button class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="menus">
+          <li>
+            <a href="#">Menu 1</a>
+          </li>
+          <li>
+            <a href="#">Menu 2</a>
+          </li>
+          <li>
+            <a href="#">Menu 3</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div></div>
+      <div></div>
+      <div></div>
+    </main>
+    <script>
+      // Primitifs: string(chaine de caractere), number(nombre), boolean (true, false), null, undefined
+      // non-primitifs: Object, tableau
+
+      //Nommenclature
+      /* liste des noms
+
+          * camelCase: listeDesNoms: la premiere lettre du premier mot est en minuscule tandisque le reste des premieres lettres des autres mots sont en majuscule
+          * PascalCase: ListeDesNoms: toutes les premieres lettres du premier mot est en majuscule
+          * kebab-case: liste-des-noms
+          * snake_case: liste_des_noms
+        */
+
+      let a = 3; // Or let name='Rayn'
+      a = 6; // La valeur est variable
+      const b = 6;
+      /*
+       * Declaration d'une constante donc la value ne peux pas etre change plustard
+       * Lors de la declaration d'une constante, on doit toujours definir la valeur initiale
+       */
+
+      const listOfName = ["Fadhil", "Paul", "Angelo", 10, true]; //creation d'un tableau ex. const nomDuTable = [valeur, ...]
+      const etudiant = {
+        name: "",
+        matricules: "",
+        sexe: "",
+        filiere: "",
+      }; // creation d'un object
+      etudiant.name = "Armelle";
+      listOfName[3] = "Beric"; // Modifier une valeur a une position precise dans un tableau ex. tableauName[index] = newValeur. Index debutant a 0 pour la premiere valeur
+      etudiant.dateOfBirth = "2000"; // Modifier la propriete d'un object (objectName.propriete)
+
+      // etudiant = {
+
+      // } on auraune erreur car on essaie de changer la valeur d'une constante
+
+      // Operateurs
+      // +, -, /, *
+      1 + 2;
+      // Contatenation
+      "Name" + " Trainer"; // Name Trainer
+
+      // function
+      function addition(nombre1, nombre2) {
+        return nombre1 + nombre2;
+      }
+
+      console.log("Resultat", "2" === 2);
+      /*
+       * ou equivalent ||
+       * et equivalent &&
+       * vrai -- true
+       * faux -- false
+       *
+       * vrai ou vrai = vrai
+       * vrai ou faux = vrai
+       * faux ou faux = faux
+       * faux ou vrai = vrai
+       *
+       * vrai et vrai = vrai
+       * vrai et faux = faux
+       * faux et vrai = faux
+       * faux et faux = faux
+       */
+      let g; // La valeur par defaut est `undefined` quand on declare une variable sans valeur initiale
+      function division(nombre1, nombre2) {
+        // Operateurs de comparaison: ==, ===, ||, &&, !=, !==, ??, ||=
+        // null, undefined
+        if (nombre1 == undefined || nombre2 == undefined) return;
+        if (typeof nombre1 != "number" || typeof nombre2 != "number") return;
+        if (nombre2 == 0) return;
+
+        return nombre1 / nombre2;
+      }
+
+      addition(4, 5);
+      console.log(division("123", "0"));
+
+      console.log(document.getElementsByClassName("logo")[0].classList);
+      //Open/Close burger
+      const burger = document.querySelector(".burger");
+      burger.addEventListener("click", () => {
+        burger.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

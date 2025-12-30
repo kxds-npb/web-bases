@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ternary operator</title>
+  </head>
+  <body>
+    <script>
+      const age = 16;
+      //   Cet opérateur est fréquemment utilisé comme raccourci pour la déclaration de `if/else`
+      const verdict = age > 20 ? "Majeur" : "Mineur";
+      console.log(verdict);
+      const verdict2 =
+        age > 16 ? "En cours" : age > 18 ? "En approche" : "Majeur";
+      console.log(verdict2);
+
+      //   if (age > 20) {
+      //     console.log("Majeur");
+      //   } else {
+      //     console.log("Mineur");
+      //   }
+
+      const isExpaned = false;
+      const classes = `should-${isExpaned ? "not-expaned" : "expand"}`;
+    </script>
+  </body>
+</html>
