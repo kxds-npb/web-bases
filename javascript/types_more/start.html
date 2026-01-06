@@ -141,12 +141,14 @@
       //Nommenclature
       /* liste des noms
 
+      listeDesNoms
           * camelCase: listeDesNoms: la premiere lettre du premier mot est en minuscule tandisque le reste des premieres lettres des autres mots sont en majuscule
           * PascalCase: ListeDesNoms: toutes les premieres lettres du premier mot est en majuscule
           * kebab-case: liste-des-noms
           * snake_case: liste_des_noms
         */
 
+      // a <-- 3;
       let a = 3; // Or let name='Rayn'
       a = 6; // La valeur est variable
       const b = 6;
@@ -218,6 +220,20 @@
       burger.addEventListener("click", () => {
         burger.classList.toggle("open");
       });
+
+      // Functions
+      function functionName(params) {}
+
+      // Function anonymes
+      const functionName = function (a) {};
+
+      //Function flechees
+      const functionName2 = () => {};
+
+      //IIEF
+      (function () {
+        console.log("abc");
+      })();
     </script>
   </body>
 </html>

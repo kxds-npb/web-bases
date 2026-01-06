@@ -51,6 +51,64 @@
       let price = 0;
       price ||= 5;
       console.log(price);
+
+      // optional chaining operator (?.): utiliser pour acceder une propriete pouvant etre null ou undefined en toute securite (sans avoir un erreur au niveau tu naviagteur)
+
+      // Operateur relationnel (in, instanceof)
+      const me = {
+        name: "WIBRC",
+        dateOfBirth: new Date("2001-09-12"),
+      };
+      console.log("dateOfBirth" in me); // true si la propriete est dans l'object et faux dans le cas contraire
+
+      // Unary operator (delete, typeof)
+      console.log(typeof me); // "object"
+      console.log(typeof []); // "object"
+      console.log(typeof 10); // "number"
+      console.log(typeof "10"); // "string"
+      console.log(typeof false); // "boolean";
+
+      // delete
+      console.log(me);
+      // delete me.dateOfBirth; // Deconseille du a la reference memoire
+      console.log(me);
+
+      // Operateur Exponentiel (**)
+      const expo = 4 ** 2; // 4^2 exposant. Resultat 16
+
+      // ...: operateus de reste
+      console.log("======================================\n");
+      console.log([1, 2, 3, 4]);
+      console.log(...[1, 2, 3, 4]);
+
+      // Destructuration
+      const me2 = {
+        name: "WIBRC",
+        dateOfBirth: new Date("2001-09-12"),
+        email: "email@email.com",
+        courses: {
+          name: "html",
+          champters: ["chap1", "chap2", "chap3"],
+        },
+      };
+
+      const {
+        email,
+        dateOfBirth,
+        name,
+        // courses: { champters, name: chapterName },
+      } = me2; // const email = me2.email; const dateOfBirth = me2.dateOfBirth
+      console.log(email, dateOfBirth, name);
+      // console.log(courses);
+
+      //const { dateOfBirth } = me; // const dateOfBirth = me.dateOfBirth;
+      // Cette erreur est du au faite que l'on essaie de creer une constante avec le meme nom que celle declare plus haut
+
+      // delete
+      const { dateOfBirth: dateOfBirth1, ...meRemaining } = me2;
+      //const dateOfBirth1 = me2.dateOfBirth;
+      console.log("Me2:", me2);
+      console.log("Remaining", meRemaining);
     </script>
   </body>
 </html>
