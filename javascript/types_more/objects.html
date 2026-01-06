@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type (Object) JS</title>
+  </head>
+  <body>
+    <script>
+      //Literal object
+      const objectName = {};
+
+      const armelle = {
+        age: 22,
+        nom: "Armelle",
+        taille: 1.7,
+        dateDeNaissance: new Date(),
+      };
+      const olivia = {
+        age: 22,
+        nom: "Olivia",
+        taille: 1.7,
+        dateDeNaissance: "10/10/2000",
+      };
+      //   JSON: Js Object Notation
+      const a = 5; //[a|5]
+      const centreFormations = {
+        nom: "Devia",
+        dateCreation: "",
+        etudiants: [
+          {
+            age: 22,
+            nom: "Olivia",
+            taille: 1.7,
+            dateDeNaissance: "10/10/2000",
+          },
+          {
+            age: 22,
+            nom: "Armelle",
+            taille: 1.7,
+            dateDeNaissance: "10/10/2000",
+          },
+          {
+            age: 22,
+            nom: "Maelys",
+            taille: 1.7,
+            dateDeNaissance: "10/10/2000",
+            listeFormations: ["html", "css", "js"],
+          },
+        ],
+      };
+      // Map et Set
+      const liste = new Set(["Nom1", "Nom2", "nom1", "Nom3", "Nom4"]);
+      console.log(liste); // number, string, null, undefined
+      console.log(liste.add("Nom5"));
+      console.log(liste.size);
+      console.log(liste.delete("nom1"));
+      console.log(liste.has("Nom1"));
+      console.log(liste.clear());
+
+      const liste2 = new Set([
+        {
+          age: 22,
+          nom: "Maelys",
+          taille: 1.7,
+          dateDeNaissance: "10/10/2000",
+          listeFormations: ["html", "css", "js"],
+        },
+        {
+          age: 22,
+          nom: "Maelys",
+          taille: 1.7,
+          dateDeNaissance: "10/10/2000",
+          listeFormations: ["html", "css", "js"],
+        },
+      ]);
+      console.log(liste2);
+
+      console.log("-------------------------Map---------");
+      const listeMap = new Map();
+      listeMap.set("email1", { name: "nom1", email: "email1" });
+      listeMap.set("email2", { name: "nom2", email: "email2" });
+      listeMap.set("email2", { name: "nom3", email: "email3" });
+      listeMap.set("email4", { name: "nom4", email: "email4" });
+
+      console.log(listeMap.get("email4"));
+      console.log(listeMap.size);
+      console.log(listeMap.delete("email2"));
+      console.log(listeMap.keys());
+      console.log(listeMap.values());
+      console.log(listeMap.has("email2"));
+      console.group(listeMap.clear());
+
+      //   POO
+      class EtudiantDevia {
+        // Attributs
+        #nom = "";
+        age = 0;
+        dateDeNaissance = "";
+        email = "";
+        tel = "";
+
+        constructor(nom, age, dateDeNaissance, email, tel) {
+          this.#nom = nom;
+          this.age = age;
+          this.dateDeNaissance = dateDeNaissance;
+          this.email = email;
+          this.tel = tel;
+        }
+
+        set nom(newName) {
+          this.#nom = newName;
+        }
+
+        //Methodes
+
+        voir() {
+          console.log(`${this.#nom} voit`);
+        }
+
+        entendre() {
+          console.log(`${this.#nom} entends`);
+        }
+
+        parler() {
+          console.log(`${this.#nom} parles`);
+        }
+
+        marcher() {
+          console.log(`${this.#nom} marches`);
+        }
+      }
+
+      const fadil = new EtudiantDevia(
+        "Fadhil",
+        32,
+        "10/10/1994",
+        "fadil@email.com",
+        "6777777777"
+      );
+      //
+      fadil.nom = "Fadil";
+
+      fadil.marcher();
+      fadil.voir();
+      fadil.entendre();
+
+      const neybi = new EtudiantDevia(
+        "neybi",
+        32,
+        "10/10/1994",
+        "neybi@email.com",
+        "6797777777"
+      );
+
+      neybi.marcher();
+    </script>
+  </body>
+</html>

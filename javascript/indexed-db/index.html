@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IndexedDB - Learning</title>
+  </head>
+  <body>
+    <script>
+      /*
+       ***API url***: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+       ***Example of usage***: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
+
+       **Remarks**:
+       * objectStore === table ina  db as well as indexes
+       * the `onupgradeneeded` is triggered when:
+       *  - We create a db for the first time
+       *  - we change the schema of the db (adding or removing a table/object-store, create or removing an index)
+       *  - we modify an existing object stores or indexes
+       */
+      // Let us open our database
+      const request = indexedDB.open("MyTestDatabase", 1);
+
+      request.onerror = (event) => {
+        // Do something with request.error!
+        console.log(
+          "An error occurs when creating the database",
+          request.error
+        );
+      };
+
+      // This event is only implemented in recent browsers
+      request.onupgradeneeded = (event) => {
+        // Save the IDBDatabase interface
+        const db = event.target.result;
+
+        /*
+         * If you need to change an existing object store (e.g., to change the keyPath), then you must delete the old object store and create it again with the new options. (Note that this will delete the information in the object store! If you need to save that information, you should read it out and save it somewhere else before upgrading the database.)
+         * Trying to create an object store with a name that already exists (or trying to delete an object store with a name that does not already exist) will throw an error.
+         */
+        // Create an objectStore for this database
+        const objectStore = db.createObjectStore("tableName", {
+          keyPath: "myKey", // object property we want to use as ID. The constraint is that the table can only contain js plain object when using the `keyPath` method. For more look here: (https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB#structuring_the_database)
+        });
+      };
+
+      let db;
+      request.onsuccess = (event) => {
+        // Do something with request.result!
+        db = request.result;
+      };
+
+      db.onerror = (event) => {
+        // Generic error handler for all errors targeted at this database's
+        // requests!
+        console.error(`Database error: ${event.target.error?.message}`);
+      };
+    </script>
+  </body>
+</html>

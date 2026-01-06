@@ -30,7 +30,7 @@ function addDeleteButtonTo(element, label) {
   element.appendChild(deleteButton);
 }
 
-function insertStudentTo(student, target) {
+function insertStudentToList(student, target) {
   const li = document.createElement("li");
   li.className = "student";
   li.textContent = student.name;
@@ -43,12 +43,13 @@ function insertStudentTo(student, target) {
   });
 
   target.appendChild(li);
+  li.scrollIntoView();
 }
 
 function refreshList() {
   const list = document.querySelector(".list");
   list.replaceChildren();
-  studentList.forEach((student) => insertStudentTo(student, list));
+  studentList.forEach((student) => insertStudentToList(student, list));
 }
 
 function sortStudentList() {
