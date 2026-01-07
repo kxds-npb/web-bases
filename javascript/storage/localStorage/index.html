@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage API</title>
+  </head>
+  <body>
+    <script>
+      /* Le `sessionStorage` a duree de la session de l'onglet du navigateur ouvert
+       */
+      sessionStorage.setItem("devia", "Db de devia"); // Permet de creer si elle n'existe pas et de modifier au cas contraire
+      console.log(sessionStorage.getItem("devia")); // Permet de recuperer cette donnee mais au format de chaine de caractere
+
+      /*
+       * les donnees sont conservees au format string et si vous voulez conserver des types autres que les chaines de caractere, on peut utiliser l'object `JSON.stringify(value_a_tranforme)`
+       * `JSON.stringify`: permet de transforme toutes les valeurs passees en parametre au format `JSON` ou string
+       * `JSON.parse`: permet de conversir la donnee transforme en son type d'origine
+       */
+
+      // Tableau de nom
+      const noms = ["nom1", "nom2", "nom3", "nom4"];
+      localStorage.setItem("devia2", JSON.stringify(noms)); // Duree de 30jours dependamment du navigateur
+      const nomEnString = localStorage.getItem("devia2"); // Recupere les donnees sauvegardees sous forme de chaine de charactere
+      console.log(JSON.parse(nomEnString)); // tranformer la chaine de caractere en tableau enfin d'avoir access a ses methodes
+
+      // Pour voir le compoertement de cela cote navigateur, ouvrer l'inspecteur du navigateur et aller dans l'onget `application` vous verz a gauche un titre "Storage" et en dessous des dropdown avec les noms appropries
+
+      // Chacun d'eux ne function que pour des element appartement au meme domaine (http + port)
+    </script>
+  </body>
+</html>

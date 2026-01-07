@@ -1,11 +1,23 @@
-document.querySelector("form").addEventListener("submit", (event) => {
-  event.preventDefault();
-});
+import { DBStorage } from "./db.js";
 
 const studentList = [];
 const studentName = document.querySelector("input");
-const addBtn = document.querySelector("button");
 const templateItem = document.getElementById("item");
+
+/**
+ * Rafraichir la liste
+ * @returns {void}
+ */
+function refreshList() {
+  const list = document.querySelector(".list");
+  list.replaceChildren();
+  studentList.forEach((student) => insertStudentToDOMList(student, list));
+}
+
+window.addEventListener("load", () => {
+  studentList.push(...DBStorage.getFromStorage());
+  refreshList();
+});
 
 /**
  * Retourne un identifiant unique
@@ -30,6 +42,7 @@ function deleteFromListById(listToRemoveFrom, studentId) {
 
   studentList.splice(studentToDeleteIndex, 1);
   listToRemoveFrom.querySelector(`[data-id="${studentId}"]`).remove();
+  DBStorage.names = studentList;
 }
 
 /**
@@ -59,16 +72,6 @@ function insertStudentToDOMList(student, target) {
 
   target.appendChild(item);
   item.scrollIntoView(); // va scroller a l'emplacement ou l'element est place dans la page pour qu'il soit visible
-}
-
-/**
- * Rafraichir la liste
- * @returns {void}
- */
-function refreshList() {
-  const list = document.querySelector(".list");
-  list.replaceChildren();
-  studentList.forEach((student) => insertStudentToDOMList(student, list));
 }
 
 /**
@@ -110,6 +113,7 @@ function addToStudentList(nameToAdd) {
     createdAt: new Date().toString(),
   };
   studentList.push(newStudent);
+  DBStorage.names = studentList;
 }
 
 /**
@@ -136,7 +140,8 @@ function processAddition(studentName) {
   clearField();
 }
 
-addBtn.addEventListener("click", function () {
+document.querySelector("form").addEventListener("submit", (event) => {
+  event.preventDefault();
   processAddition(studentName.value);
 });
 
