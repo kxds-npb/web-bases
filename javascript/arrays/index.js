@@ -1,7 +1,7 @@
 import { DBStorage } from "./db.js";
 
-const studentList = [];
-const studentName = document.querySelector("input");
+const studentList = new Map();
+const studentNameInput = document.querySelector("input");
 const templateItem = document.getElementById("item");
 
 /**
@@ -11,11 +11,15 @@ const templateItem = document.getElementById("item");
 function refreshList() {
   const list = document.querySelector(".list");
   list.replaceChildren();
-  studentList.forEach((student) => insertStudentToDOMList(student, list));
+  studentList.forEach((student) => {
+    insertStudentToDOMList(student, list);
+  });
 }
 
 window.addEventListener("load", () => {
-  studentList.push(...DBStorage.getFromStorage());
+  for (const student of DBStorage.getFromStorage()) {
+    studentList.set(student.id, student);
+  }
   refreshList();
 });
 
@@ -34,13 +38,9 @@ const generateUID = () => {
  * @returns {void}
  */
 function deleteFromListById(listToRemoveFrom, studentId) {
-  const studentToDeleteIndex = studentList.findIndex(
-    (student) => student.id === studentId
-  );
+  if (!studentList.has(studentId)) return;
 
-  if (studentToDeleteIndex === -1) return;
-
-  studentList.splice(studentToDeleteIndex, 1);
+  studentList.delete(studentId);
   listToRemoveFrom.querySelector(`[data-id="${studentId}"]`).remove();
   DBStorage.names = studentList;
 }
@@ -79,9 +79,13 @@ function insertStudentToDOMList(student, target) {
  * @returns { void }
  */
 function sortStudentList() {
-  studentList.sort((studentA, studentB) =>
+  const sortedList = [...studentList.values()].sort((studentA, studentB) =>
     studentA.name.toLowerCase().localeCompare(studentB.name.toLowerCase())
   );
+  studentList.clear();
+  sortedList.forEach((student) => {
+    studentList.set(student.id, student);
+  });
 }
 
 /**
@@ -98,7 +102,7 @@ function capitalize(name) {
  * @returns {void}
  */
 function clearField() {
-  studentName.value = "";
+  studentNameInput.value = "";
 }
 
 /**
@@ -112,29 +116,30 @@ function addToStudentList(nameToAdd) {
     name: capitalize(nameToAdd),
     createdAt: new Date().toString(),
   };
-  studentList.push(newStudent);
-  DBStorage.names = studentList;
+  studentList.set(newStudent.id, newStudent);
+  DBStorage.names = [...studentList.values()];
 }
 
 /**
  * Manager le processus d'ajout un etudiant
- * @param {string} studentName nom de l'etudiant
+ * @param {string} studentNameInput nom de l'etudiant
  * @returns {void}
  */
-function processAddition(studentName) {
-  const hasThisStudentAlready = studentList.find(
-    (student) =>
-      student.name.toLocaleLowerCase() === studentName.toLocaleLowerCase()
-  );
+function processAddition(studentNameInput) {
+  let hasThisStudentAlready = false;
+  studentList.forEach((student) => {
+    hasThisStudentAlready =
+      student.name.toLowerCase() === studentNameInput.toLowerCase();
+  });
 
-  const canAddToList = studentName && hasThisStudentAlready === undefined;
+  const canAddToList = studentNameInput && !hasThisStudentAlready;
 
   if (!canAddToList) {
     clearField();
     return;
   }
 
-  addToStudentList(studentName);
+  addToStudentList(studentNameInput);
   sortStudentList();
   refreshList();
   clearField();
@@ -142,11 +147,5 @@ function processAddition(studentName) {
 
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
-  processAddition(studentName.value);
-});
-
-studentName.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    processAddition(studentName.value);
-  }
+  processAddition(studentNameInput.value);
 });
