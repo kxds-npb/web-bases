@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template tag in HTML</title>
+  </head>
+  <body>
+    <!-- L'attribut template permet de creer un fragment du DOM qui n'est pas affiche meme si present dans le `body`. Il est utilise comme un model comme son nom l'indique. Par exemple un model de CV, model de presentation powerpoint. Il donne la structure du model et nous pouvons modifier le contenue pour qu'il corresponde a notre besoin mais en maintenant toutefois la structure -->
+
+    <!-- Son role est simple, il nous evite le long et hardieux travail de creer la structure en JS dynamiquement mais au contraire nous pouvons just copier le template et modifier le contenu dynamique sans avoir a gerer le design, permettant ainsi une separation plus propre -->
+
+    <!-- RQ: Nous pouvons en avoir plusieurs -->
+    <template>
+      <!-- Cette element ne sera pas visible dans le DOM -->
+      <li>Mon teste 1</li>
+    </template>
+    <h2>Mon titre en 2 eme niveau</h2>
+    <script>
+      const template = document.querySelector("template"); // recuperer le template du DOM
+      // Pour cloner son contenu et l'utilise a notre guise sans toucher celui de base
+      const clone = template.content.cloneNode(true); // true permet de clone meme ses descendants. Et si tu veux juste le veux sans descendant tu peux omettre le `true`
+      // Cet fragmen est un object en Js ayant ses propres methodes a voir docs en cas de besoin profond
+    </script>
+  </body>
+</html>

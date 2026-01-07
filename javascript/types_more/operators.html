@@ -50,7 +50,7 @@
 
       let price = 0;
       price ||= 5;
-      console.log(price);
+      console.log(price); // resultat 5
 
       // optional chaining operator (?.): utiliser pour acceder une propriete pouvant etre null ou undefined en toute securite (sans avoir un erreur au niveau tu naviagteur)
 
@@ -79,7 +79,7 @@
       // ...: operateus de reste
       console.log("======================================\n");
       console.log([1, 2, 3, 4]);
-      console.log(...[1, 2, 3, 4]);
+      console.log(...[1, 2, 3, 4]); // extrait le contenu du table sous forme de liste
 
       // Destructuration
       const me2 = {
@@ -104,11 +104,11 @@
       //const { dateOfBirth } = me; // const dateOfBirth = me.dateOfBirth;
       // Cette erreur est du au faite que l'on essaie de creer une constante avec le meme nom que celle declare plus haut
 
-      // delete
-      const { dateOfBirth: dateOfBirth1, ...meRemaining } = me2;
+      // alternative a `delete`. et cette methode est recommendee pour supprimer une element
+      const { dateOfBirth: dateOfBirth1, ...meRemaining } = me2; // dateOfBirth: dateOfBirth1 est pour rennomer la propriete extraite
       //const dateOfBirth1 = me2.dateOfBirth;
       console.log("Me2:", me2);
-      console.log("Remaining", meRemaining);
+      console.log("Remaining", meRemaining); // Le nouvel object sans la date de naissance
     </script>
   </body>
 </html>

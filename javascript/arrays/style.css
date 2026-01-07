@@ -100,7 +100,7 @@ body {
   transition: 0.5s;
   animation-name: appear;
   animation-duration: 0.3s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in;
   animation-fill-mode: forwards;
   position: relative;
 }

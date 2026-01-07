@@ -11,10 +11,10 @@
       const objectName = {};
 
       const armelle = {
-        age: 22,
+        age: 22, // Propriete: valeur; La propriete fait reference a la caracterisque de l'object ou etudiant dans notre cas utilise au system
         nom: "Armelle",
         taille: 1.7,
-        dateDeNaissance: new Date(),
+        dateDeNaissance: new Date("2000-12-06"),
       };
       const olivia = {
         age: 22,
@@ -23,11 +23,12 @@
         dateDeNaissance: "10/10/2000",
       };
       //   JSON: Js Object Notation
-      const a = 5; //[a|5]
+      const a = 5; //Represenatation en memoire stack: [a|5]
       const centreFormations = {
         nom: "Devia",
         dateCreation: "",
         etudiants: [
+          // Un object peut contenir d'autre types et meme un autre object et un table de sans limite
           {
             age: 22,
             nom: "Olivia",
@@ -50,13 +51,15 @@
         ],
       };
       // Map et Set
-      const liste = new Set(["Nom1", "Nom2", "nom1", "Nom3", "Nom4"]);
+      const liste = new Set(["Nom1", "Nom2", "nom1", "Nom3", "Nom4"]); // Est plus utilise lorsque l'on veux enlever les doublons et ne voulons aucune repetition.
+      // est sensible a la casse (n est different de N)
+      // Est utilise plus pour les type primitifs car n'enleve pas les doublons pour des objets semblable (meme contenu)
       console.log(liste); // number, string, null, undefined
-      console.log(liste.add("Nom5"));
-      console.log(liste.size);
-      console.log(liste.delete("nom1"));
-      console.log(liste.has("Nom1"));
-      console.log(liste.clear());
+      console.log(liste.add("Nom5")); // Ajouter un element a la liste
+      console.log(liste.size); // Recuperer la taille de la liste
+      console.log(liste.delete("nom1")); // supprimer un element de la liste
+      console.log(liste.has("Nom1")); // Verifier su l'element se trouve dans la liste
+      console.log(liste.clear()); // Vider tout le contenu de la liste et la remettre a zero (vide)
 
       const liste2 = new Set([
         {
@@ -74,32 +77,40 @@
           listeFormations: ["html", "css", "js"],
         },
       ]);
-      console.log(liste2);
+      console.log(liste2); // Cette exemple montre que cela n'enleve pas les doublons de la liste dnas le cas ou ce sont des objects
 
       console.log("-------------------------Map---------");
-      const listeMap = new Map();
-      listeMap.set("email1", { name: "nom1", email: "email1" });
+      const listeMap = new Map(); // Pour des element ayant une cle et valeur
+      listeMap.set("email1", { name: "nom1", email: "email1" }); // key: email1, valeur: {...}
       listeMap.set("email2", { name: "nom2", email: "email2" });
-      listeMap.set("email2", { name: "nom3", email: "email3" });
+      listeMap.set("email2", { name: "nom3", email: "email3" }); // la clef doit etre unique et donc comme une clef avec `email2` a ete declare plus haut, elle modifiera juste sa valeur
       listeMap.set("email4", { name: "nom4", email: "email4" });
 
-      console.log(listeMap.get("email4"));
-      console.log(listeMap.size);
-      console.log(listeMap.delete("email2"));
-      console.log(listeMap.keys());
-      console.log(listeMap.values());
-      console.log(listeMap.has("email2"));
-      console.group(listeMap.clear());
+      console.log(listeMap.get("email4")); // Recuperer un element en utilisant sa clef pas sa valeur
+      console.log(listeMap.size); // Meme que Set, permet de connaitre le nombre d'element dans notre liste
+      console.log(listeMap.delete("email2")); // Permet de supprimer une entree en utilisant sa clef
+      console.log(listeMap.keys()); // Recupere la clef sous forme d'iterateurs
+      console.log(listeMap.values()); // Recupere les valeur sous forme d'iterateur
+      console.log(listeMap.has("email2")); // Verifier s'il y a deja un clef avec ce nom
+      console.group(listeMap.clear()); // Vider la liste de ses elements et la remettre a zero
 
-      //   POO
+      //   POO: Programmation Orientee Object
       class EtudiantDevia {
         // Attributs
-        #nom = ""; // Methode privee
-        age = 0;
+        #nom = ""; // attribut privee
+        age = 0; // Attribut public
         dateDeNaissance = "";
         email = "";
         tel = "";
 
+        /**
+         * un methode speciales utilisee pour creer un instance de cette classe et donc un etudiant devia
+         * @param {string} nom nom de l'etudiant
+         * @param {number} age age de l'etudiant
+         * @param {Date} dateDeNaissance date de naissance de l'etudiant
+         * @param {string} email email de l'etudiant
+         * @param {string} tel numero de telephon de l'etudiant
+         */
         constructor(nom, age, dateDeNaissance, email, tel) {
           this.#nom = nom;
           this.age = age;
@@ -108,12 +119,17 @@
           this.tel = tel;
         }
 
+        // une methode permettant la modification d'un attribut privee de la classe
         set nom(newName) {
           this.#nom = newName;
         }
 
-        //Methodes
+        // Une methode permettant l'access a un attribut privee de la classe
+        get nom() {
+          return this.#nom;
+        }
 
+        //Methodes ou actions de cette classe: ce que un etudiant doit etre capable de faire
         voir() {
           console.log(`${this.#nom} voit`);
         }
@@ -131,6 +147,7 @@
         }
       }
 
+      // Permet de creer une instance de l'object base sur la classe definit plus haut sans avoir a tout definir comme avec les object literaux
       const fadil = new EtudiantDevia(
         "Fadhil",
         32,
@@ -138,12 +155,12 @@
         "fadil@email.com",
         "6777777777"
       );
-      //
+      // Fait appel a la methode `set` definit dans la class
       fadil.nom = "Fadil";
 
       fadil.marcher();
-      fadil.voir();
-      fadil.entendre();
+      fadil.voir(); // Demander a cet etudiant de voir ou tester s'il voit
+      fadil.entendre(); // Demander a cet etudiant s'il entend ou tester s'il voit
 
       const neybi = new EtudiantDevia(
         "neybi",
@@ -153,7 +170,7 @@
         "6797777777"
       );
 
-      neybi.marcher();
+      neybi.marcher(); // demande a l'etudiant `neybi` de marcher
     </script>
   </body>
 </html>
