@@ -1,0 +1,108 @@
+<!--Annonce un document de type html-->
+<!DOCTYPE html>
+<!-- Represente ton document lui meme et lui dit que son contenu est en langue anglaise. On peut la changer en `lang="fr"` au besoin -->
+<html lang="en">
+  <head>
+    <!-- Encodage, la liste des caractere accepte et interpretable par ta page. (UTF-8 est recommende car supporte plus de caractere de plusieur langue)-->
+    <meta charset="UTF-8" />
+    <!-- Demande  ala page d'occuper toute la largeur disponiple sur l'appareil sur lequel il est ouvert-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Definit le titre du Document-->
+    <title>Bases HTML/CSS</title>
+    <!-- Dans le cas ou nous avons trop de style css, on peut creer un ficher avec l'extension `.css`(style.css) et le lie a notre document -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <!-- Definit le style directement dans le HTML. NOTE: A utiliser si le style est assez simple et petit ou en cas de test ou apprentissage -->
+    <style>
+      /* CSS: Feuille de style en cascade (Donc le dernier element partant du haut aura la priorite sur celui qui le precede) */
+
+      /* -----Type de selecteur -------- */
+
+      /* selecteur global */
+      * {
+        /* propriete : valeur;  */ /*; est important, cr il marque la fin*/
+        margin: 0;
+        padding: 0;
+      }
+      /* Selecteurs de classes (Plus recommende d'utiliser)*/
+      .entete {
+        /* propriete : valeur;  */
+      }
+
+      /* Selecteur d'attribut */
+      #haut {
+        /* propriete : valeur;  */
+      }
+
+      input[type="text"] {
+        /* propriete : valeur;  */
+      }
+
+      /* selecteur d'element */
+      header {
+      }
+
+      main {
+      }
+
+      /* Priorite en css (id, class, element) */
+      /* h1 .titre : (011). Ceci cherchera un enfant ayant la class `.titre` dans la balise `h1`*/
+      h1.titre {
+        /*(011)*/
+        color: green;
+        border: 1px solid red;
+        height: 200px; /* Peut etre modifier car c'est element de type block */
+      }
+
+      .titre {
+        color: red;
+      }
+
+      .titre {
+        color: purple;
+      }
+      /*
+      * `block`: Occupe toute la largeur de leur parent et l'on peu modifier la largeur et la hauteur. Ex. header, section, main, footer, aside, article, etc.
+      * `inline`: N'occupe que la largeur de leur contenu et on ne peut pas modifier les dimensions (hauteur, largeur). Ex. span, label, strong, em, mark, etc.
+      * `inline-block`: Est un element qui occupe la largeur de son contenu par default mais donne la possibilite de modifer ses dimensions
+       */
+      .span {
+        border: 2px solid blue;
+        /* width: 100%; */
+        /* height: 100px; */
+
+        /* display: none; N'affiche pas l'element*/
+        /* display: block; Donne un comportement `block` en un element*/
+        /* display: inline; Donne un comportement `inline` a un element */
+        display: inline-block; /* Donne a la fois un comportement `block` et `inline` */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Structure d'une balise HTML -->
+    <!-- balise ouvrante(<header>), atrributs(class, id, type, title), le contenu(texte) et balise-fermante (</header>) -->
+    <header class="entete" id="haut" role="banner">
+      <h1 class="titre">Mon titre (type block)</h1>
+      <span class="span">Mon Span (type: inline)</span>
+      <!-- (nav) Grand parent de la balise `li` et parent de `ul`-->
+      <nav role="navigation">
+        <ul>
+          <!-- element enfant de la balise `nav` -->
+          <li></li>
+          <!-- element enfant de la balise `ul` -->
+          <!-- Elements jumeaux ou balise jumelles (possedent une balise ouvrante et fermante) -->
+          <!-- <img /> Element orphelin (Possede juste une seule balise avec un `/` a la fin)-->
+          <!-- <br /> Element orphelin -->
+          <li></li>
+          <li></li>
+        </ul>
+      </nav>
+    </header>
+    <main role="main">
+      <!-- attributs: type, required -->
+      <input type="text" required="required" />
+      <input type="tel" />
+      <input type="email" />
+    </main>
+  </body>
+</html>
