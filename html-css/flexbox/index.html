@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox</title>
+    <style>
+      /* Mise a zero des marges exterieures et intereuses appliquees par defaut aux balises par le navigateur */
+      * {
+        padding: 0; /*Marges interieures*/
+        margin: 0; /* Marges exterieures */
+      }
+
+      section {
+        display: flex; /* Le parent se comportera comme un element block et les enfants comme des elements flexibles */
+        /* display: inline-flex; le parent se comportera comme un element inline et les enfants comme des elements flexibles */
+        height: 300px;
+        border: 2px solid red;
+        gap: 12px 3px; /*
+        * si une valeur definit, elle sera utilisee pour l'espacement a gauche et droite de meme qu'en haut et en bas. * Si deux valuers sont utilisees, la premiere representera celle du haut et bas tandis que la deuxieme celle de gauche et droite
+        */
+        flex-wrap: wrap; /*
+        * flex-wrap permet de mettre les element a la ligne quant il arrive a la fin du container (no-wrap comme valeur par default) ou quand l'element est trop large pour etre contenu sur la ligne. Dans ce cas, l'element sera rappetisse pour suffir dans le conteneur, ce qui n'est pas toujours ce que l'on veut.
+        *  la valeur `wrap` demande de mettre a la ligne en fonction de la direction d'affichage de texte dans lec cas ou l'element est trop large pour etre affiche sur une seule ligne
+        * la valeur `wrap-reverse` demande de mettre a la ligne dans le sens inverse de la direction d'ecriture
+        */
+        flex-direction: row; /*
+        * Permet de changer la direction d'affichage avec valeur par default `row`
+        * La valeur `row-reverse`, permet de changer la direction dans le sens inverse
+        * La valeur `column`, change l'affichage par default suivant l'axe x (Axe principal) pour l'axe `y`(du haut vers le bas)
+        * La valeur `column-reverse`, change l'affichage dans le sens inverse de l'axe `y` (base vers le haut)
+        */
+        justify-content: space-around; /*
+        * Permet de modifier l'affichage des elements du contaneur suivant l'axe principal (x par default et `y` si la valeur de flex-direction est a `column`)
+        * Valeur possible: `center, space-around, space-between, space-evenly, start (valuer par defaut)`
+        */
+        align-items: center; /*
+        * permet de modifier l'affiche des elements suivant l'axe opposee de l'axe principal (par default `y` et `x` si la valeur de `flex-direction` est `column`)
+        * Valeurs possibles: (end, start, flex-end, flex-start, center, baseline, stretch, last baseline)
+        */
+        flex-flow: row wrap; /*
+         * Est un raccourcis pour les proprietes (flex-direction et flex-wrap)
+        */
+      }
+
+      section article {
+        height: 100px;
+        width: 100px;
+        background-color: aquamarine;
+
+        flex-shrink: 1; /*
+        * Permet de definer le niveau de rappetissage ou de grandissement des elements. La valeur par default `1` ce qui permet a l'element de rappetisser en cas de besoin sinon il depassera son conteneur
+        */
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <article>1</article>
+      <article>4</article>
+      <article>5</article>
+      <article>6</article>
+      <article>7</article>
+      <article>8</article>
+      <article>9</article>
+      <article>10</article>
+    </section>
+  </body>
+</html>
