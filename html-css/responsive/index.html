@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media queries (bases)</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box; /* Pour inclure les bordures et les marges dans les dimensions totales des elements.
+        * Il peut prendre plusieurs autre valeurs comme `content-box` (valeur par defaut) et `inherit` (herite de son parent).
+        * `content-box`: les dimensions de l'element ne prennent en compte que le contenu, les bordures et marges sont ajoutees en plus.
+        * `border-box`: les dimensions de l'element incluent le contenu, les bordures et les marges.
+        * `inherit`: l'element herite de la valeur de son parent.
+        * Pour plus d'info: https://developer.mozilla.org/fr/docs/Web/CSS/box-sizing
+         */
+      }
+
+      /* Le responsive veut dire que le design s'adapte automatiquement à la taille de l'écran. */
+
+      /* En utilisant l'approche mobile-first, le css fait en premier represente celui du mobile. Et donc pour cela, on doit mettre don navigateur en mode mobile */
+      h1 {
+        background-color: lightblue;
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* Cette ligne signifie que si l'écran est plus large que 767px, alors appliquer les règles suivantes. On modifie uniquement le style qui doit change pour cette taille car les regles du mobile precedemment appliques fonctionnera toujours  */
+      @media only screen and (min-width: 768px) {
+        h1 {
+          /* On modifie uniquement le style qui change pour les écrans de cette taille */
+          background-color: lightcoral;
+          font-size: 4rem;
+        }
+      }
+
+      /* Pour les écrans de taille moyenne */
+      @media only screen and (min-width: 1024px) {
+        h1 {
+          background-color: lightgreen;
+          font-size: 2rem;
+        }
+      }
+
+      /* Pour les écrans de taille large */
+      @media only screen and (min-width: 1280px) {
+        h1 {
+          background-color: darkcyan;
+          font-size: 3rem;
+        }
+      }
+      /* Les tailles recommendees sont:
+      * Mobile: jusqu'a 767px
+      * Tablette: de 768px a 1023px
+      * Ecran moyen: de 1024px a 1279px
+      * Ecran large: 1280px et plus
+      * Ecran tres large: 1440px et plus
+      * Ecran ultra large: 1920px et plus
+      * Ecran enorme: 2560px et plus
+      * Ces tailles peuvent varier en fonction des besoins du projet.
+      * Pour plus d'info: https://developer.mozilla.org/fr/docs/Web/CSS/Media_Queries/Using_media_queries
+      */
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>Mon beau titre</h1>
+    </section>
+  </body>
+</html>
